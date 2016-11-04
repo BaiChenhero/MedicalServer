@@ -1,0 +1,972 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY OMKB "http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:OMKB="http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <Ontology rdf:about="http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#单位 -->
+
+    <AnnotationProperty rdf:about="&OMKB;单位"/>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#缩写 -->
+
+    <AnnotationProperty rdf:about="&OMKB;缩写"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#包含症状 -->
+
+    <ObjectProperty rdf:about="&OMKB;包含症状">
+        <rdfs:domain rdf:resource="&OMKB;疾病"/>
+        <rdfs:range rdf:resource="&OMKB;症状"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#子科室 -->
+
+    <ObjectProperty rdf:about="&OMKB;子科室">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="&OMKB;科室"/>
+        <rdfs:range rdf:resource="&OMKB;科室"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#属于科室 -->
+
+    <ObjectProperty rdf:about="&OMKB;属于科室">
+        <rdfs:domain rdf:resource="&OMKB;疾病"/>
+        <rdfs:range rdf:resource="&OMKB;科室"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#并发疾病 -->
+
+    <ObjectProperty rdf:about="&OMKB;并发疾病">
+        <rdfs:range rdf:resource="&OMKB;疾病"/>
+        <rdfs:domain rdf:resource="&OMKB;疾病"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#手术适应症 -->
+
+    <ObjectProperty rdf:about="&OMKB;手术适应症">
+        <rdfs:domain rdf:resource="&OMKB;手术"/>
+        <rdfs:range rdf:resource="&OMKB;疾病"/>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;适应症"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#检查适应症 -->
+
+    <ObjectProperty rdf:about="&OMKB;检查适应症">
+        <rdfs:domain rdf:resource="&OMKB;检查"/>
+        <rdfs:range rdf:resource="&OMKB;疾病"/>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;适应症"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#相互作用 -->
+
+    <ObjectProperty rdf:about="&OMKB;相互作用">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <inverseOf rdf:resource="&OMKB;相互作用"/>
+        <rdfs:domain rdf:resource="&OMKB;药物"/>
+        <rdfs:range rdf:resource="&OMKB;药物"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#药物适应症 -->
+
+    <ObjectProperty rdf:about="&OMKB;药物适应症">
+        <rdfs:range rdf:resource="&OMKB;疾病"/>
+        <rdfs:domain rdf:resource="&OMKB;药物"/>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;适应症"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#适应症 -->
+
+    <ObjectProperty rdf:about="&OMKB;适应症">
+        <rdfs:domain rdf:resource="&OMKB;手术"/>
+        <rdfs:domain rdf:resource="&OMKB;检查"/>
+        <rdfs:range rdf:resource="&OMKB;疾病"/>
+        <rdfs:domain rdf:resource="&OMKB;药物"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#鉴别疾病 -->
+
+    <ObjectProperty rdf:about="&OMKB;鉴别疾病">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:range rdf:resource="&OMKB;疾病"/>
+        <rdfs:domain rdf:resource="&OMKB;疾病"/>
+        <inverseOf rdf:resource="&OMKB;鉴别疾病"/>
+    </ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#γ-谷氨酰基转移酶 -->
+
+    <DatatypeProperty rdf:about="&OMKB;γ-谷氨酰基转移酶">
+        <OMKB:缩写>GGT</OMKB:缩写>
+        <OMKB:单位>u / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#丙氨酸氨基转移酶 -->
+
+    <DatatypeProperty rdf:about="&OMKB;丙氨酸氨基转移酶">
+        <OMKB:缩写>ALT</OMKB:缩写>
+        <OMKB:单位>u / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#中性粒细胞比率 -->
+
+    <DatatypeProperty rdf:about="&OMKB;中性粒细胞比率">
+        <OMKB:单位>%</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#二氧化碳结合力 -->
+
+    <DatatypeProperty rdf:about="&OMKB;二氧化碳结合力">
+        <OMKB:单位>mmol / L</OMKB:单位>
+        <OMKB:缩写>CO2-CP</OMKB:缩写>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#体温 -->
+
+    <DatatypeProperty rdf:about="&OMKB;体温">
+        <OMKB:单位>℃</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#单核细胞比率 -->
+
+    <DatatypeProperty rdf:about="&OMKB;单核细胞比率">
+        <OMKB:单位>%</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#参数 -->
+
+    <DatatypeProperty rdf:about="&OMKB;参数"/>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#天冬氨酸氨基转移酶 -->
+
+    <DatatypeProperty rdf:about="&OMKB;天冬氨酸氨基转移酶">
+        <OMKB:单位>u / L</OMKB:单位>
+        <OMKB:缩写>AST</OMKB:缩写>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#尿素 -->
+
+    <DatatypeProperty rdf:about="&OMKB;尿素">
+        <OMKB:单位>mmol / L</OMKB:单位>
+        <OMKB:缩写>BUN</OMKB:缩写>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#总胆固醇测定 -->
+
+    <DatatypeProperty rdf:about="&OMKB;总胆固醇测定">
+        <OMKB:缩写>TC</OMKB:缩写>
+        <OMKB:单位>mmol / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#总胆汁酸 -->
+
+    <DatatypeProperty rdf:about="&OMKB;总胆汁酸">
+        <OMKB:缩写>TBA</OMKB:缩写>
+        <OMKB:单位>μmol / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#总胆红素 -->
+
+    <DatatypeProperty rdf:about="&OMKB;总胆红素">
+        <OMKB:缩写>T.BILI</OMKB:缩写>
+        <OMKB:单位>μmol / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#总蛋白 -->
+
+    <DatatypeProperty rdf:about="&OMKB;总蛋白">
+        <OMKB:缩写>TP</OMKB:缩写>
+        <OMKB:单位>g / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#氯测定 -->
+
+    <DatatypeProperty rdf:about="&OMKB;氯测定">
+        <OMKB:单位>mmol / L</OMKB:单位>
+        <OMKB:缩写>CL-</OMKB:缩写>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#淋巴细胞比率 -->
+
+    <DatatypeProperty rdf:about="&OMKB;淋巴细胞比率">
+        <OMKB:单位>%</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#甘油三酯测定 -->
+
+    <DatatypeProperty rdf:about="&OMKB;甘油三酯测定">
+        <OMKB:缩写>TG</OMKB:缩写>
+        <OMKB:单位>mmol / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#疾病简介 -->
+
+    <DatatypeProperty rdf:about="&OMKB;疾病简介">
+        <rdfs:domain rdf:resource="&OMKB;疾病"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#症状简介 -->
+
+    <DatatypeProperty rdf:about="&OMKB;症状简介">
+        <rdfs:domain rdf:resource="&OMKB;症状"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#白细胞 -->
+
+    <DatatypeProperty rdf:about="&OMKB;白细胞">
+        <OMKB:缩写>WBC</OMKB:缩写>
+        <OMKB:单位>10^9 / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#白蛋白 -->
+
+    <DatatypeProperty rdf:about="&OMKB;白蛋白">
+        <OMKB:缩写>ALB</OMKB:缩写>
+        <OMKB:单位>g / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#直接胆红素 -->
+
+    <DatatypeProperty rdf:about="&OMKB;直接胆红素">
+        <OMKB:缩写>D.BILI</OMKB:缩写>
+        <OMKB:单位>μmol / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#碱性磷酸酶 -->
+
+    <DatatypeProperty rdf:about="&OMKB;碱性磷酸酶">
+        <OMKB:缩写>ALP</OMKB:缩写>
+        <OMKB:单位>u / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#红细胞 -->
+
+    <DatatypeProperty rdf:about="&OMKB;红细胞">
+        <OMKB:单位>10^12 / L</OMKB:单位>
+        <OMKB:缩写>RBC</OMKB:缩写>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#肌酐 -->
+
+    <DatatypeProperty rdf:about="&OMKB;肌酐">
+        <OMKB:单位>mmol / L</OMKB:单位>
+        <OMKB:缩写>Cr</OMKB:缩写>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#胆碱酯酶 -->
+
+    <DatatypeProperty rdf:about="&OMKB;胆碱酯酶">
+        <OMKB:缩写>CHE</OMKB:缩写>
+        <OMKB:单位>u / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#葡萄糖 -->
+
+    <DatatypeProperty rdf:about="&OMKB;葡萄糖">
+        <OMKB:单位>mmol / L</OMKB:单位>
+        <OMKB:缩写>GLU</OMKB:缩写>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#血小板 -->
+
+    <DatatypeProperty rdf:about="&OMKB;血小板">
+        <OMKB:单位>10^9 / L</OMKB:单位>
+        <OMKB:缩写>PLT</OMKB:缩写>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#血红蛋白 -->
+
+    <DatatypeProperty rdf:about="&OMKB;血红蛋白">
+        <OMKB:缩写>HGB</OMKB:缩写>
+        <OMKB:单位>g / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#钙测定 -->
+
+    <DatatypeProperty rdf:about="&OMKB;钙测定">
+        <OMKB:单位>mmol / L</OMKB:单位>
+        <OMKB:缩写>Ca2+</OMKB:缩写>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#钠测定 -->
+
+    <DatatypeProperty rdf:about="&OMKB;钠测定">
+        <OMKB:单位>mmol / L</OMKB:单位>
+        <OMKB:缩写>Na+</OMKB:缩写>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#钾测定 -->
+
+    <DatatypeProperty rdf:about="&OMKB;钾测定">
+        <OMKB:缩写>K+</OMKB:缩写>
+        <OMKB:单位>mmol / L</OMKB:单位>
+        <rdfs:subPropertyOf rdf:resource="&OMKB;参数"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#H2-受体拮抗药 -->
+
+    <Class rdf:about="&OMKB;H2-受体拮抗药">
+        <rdfs:subClassOf rdf:resource="&OMKB;抗分泌剂"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#上叶，支气管或肺 -->
+
+    <Class rdf:about="&OMKB;上叶，支气管或肺">
+        <rdfs:subClassOf rdf:resource="&OMKB;支气管和肺部恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#下叶，支气管或肺 -->
+
+    <Class rdf:about="&OMKB;下叶，支气管或肺">
+        <rdfs:subClassOf rdf:resource="&OMKB;支气管和肺部恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#中叶，支气管或肺 -->
+
+    <Class rdf:about="&OMKB;中叶，支气管或肺">
+        <rdfs:subClassOf rdf:resource="&OMKB;支气管和肺部恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#主支气管 -->
+
+    <Class rdf:about="&OMKB;主支气管">
+        <rdfs:subClassOf rdf:resource="&OMKB;支气管和肺部恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#乳房的恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;乳房的恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#先天性畸形、变形和染色体异常 -->
+
+    <Class rdf:about="&OMKB;先天性畸形、变形和染色体异常">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#免疫抑制药物 -->
+
+    <Class rdf:about="&OMKB;免疫抑制药物">
+        <rdfs:subClassOf rdf:resource="&OMKB;药物"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#其它和不清楚部位的呼吸系统和胸内器官的恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;其它和不清楚部位的呼吸系统和胸内器官的恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;呼吸和胸内气管的恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#内分泌、营养和代谢疾病 -->
+
+    <Class rdf:about="&OMKB;内分泌、营养和代谢疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#副窦恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;副窦恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;呼吸和胸内气管的恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#呼吸和胸内气管的恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;呼吸和胸内气管的恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#呼吸系统疾病 -->
+
+    <Class rdf:about="&OMKB;呼吸系统疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#唇、口腔和咽部的恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;唇、口腔和咽部的恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#喉部恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;喉部恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;呼吸和胸内气管的恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#女性生殖器官的恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;女性生殖器官的恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#妊娠、分娩和产褥期 -->
+
+    <Class rdf:about="&OMKB;妊娠、分娩和产褥期">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#循环系统疾病 -->
+
+    <Class rdf:about="&OMKB;循环系统疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#心脏、胸腔纵隔和胸膜的恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;心脏、胸腔纵隔和胸膜的恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;呼吸和胸内气管的恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#手术 -->
+
+    <Class rdf:about="&OMKB;手术">
+        <disjointWith rdf:resource="&OMKB;检查"/>
+        <disjointWith rdf:resource="&OMKB;疾病"/>
+        <disjointWith rdf:resource="&OMKB;症状"/>
+        <disjointWith rdf:resource="&OMKB;科室"/>
+        <disjointWith rdf:resource="&OMKB;药物"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#抗分泌剂 -->
+
+    <Class rdf:about="&OMKB;抗分泌剂">
+        <rdfs:subClassOf rdf:resource="&OMKB;药物"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#支气管和肺交搭跨越的恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;支气管和肺交搭跨越的恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;支气管和肺部恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#支气管和肺部恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;支气管和肺部恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;呼吸和胸内气管的恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#未明确的支气管或肺 -->
+
+    <Class rdf:about="&OMKB;未明确的支气管或肺">
+        <rdfs:subClassOf rdf:resource="&OMKB;支气管和肺部恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#某些传染和寄生虫病 -->
+
+    <Class rdf:about="&OMKB;某些传染和寄生虫病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#检查 -->
+
+    <Class rdf:about="&OMKB;检查">
+        <disjointWith rdf:resource="&OMKB;疾病"/>
+        <disjointWith rdf:resource="&OMKB;症状"/>
+        <disjointWith rdf:resource="&OMKB;科室"/>
+        <disjointWith rdf:resource="&OMKB;药物"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#气管恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;气管恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;呼吸和胸内气管的恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#氨基水杨酸药物 -->
+
+    <Class rdf:about="&OMKB;氨基水杨酸药物">
+        <rdfs:subClassOf rdf:resource="&OMKB;药物"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#泌尿生殖系统疾病 -->
+
+    <Class rdf:about="&OMKB;泌尿生殖系统疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#泌尿道恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;泌尿道恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#消化器官恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;消化器官恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#消化系统疾病 -->
+
+    <Class rdf:about="&OMKB;消化系统疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#甲状腺和其它内分泌腺恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;甲状腺和其它内分泌腺恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#男性生殖器官的恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;男性生殖器官的恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#疾病 -->
+
+    <Class rdf:about="&OMKB;疾病">
+        <disjointWith rdf:resource="&OMKB;科室"/>
+        <disjointWith rdf:resource="&OMKB;药物"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#症状 -->
+
+    <Class rdf:about="&OMKB;症状">
+        <disjointWith rdf:resource="&OMKB;科室"/>
+        <disjointWith rdf:resource="&OMKB;药物"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#皮肤和皮下组织疾病 -->
+
+    <Class rdf:about="&OMKB;皮肤和皮下组织疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#皮质类固醇药物 -->
+
+    <Class rdf:about="&OMKB;皮质类固醇药物">
+        <rdfs:subClassOf rdf:resource="&OMKB;药物"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#眼、脑和其它中枢神经系统的恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;眼、脑和其它中枢神经系统的恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#眼及附器疾病 -->
+
+    <Class rdf:about="&OMKB;眼及附器疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#神经系统疾病 -->
+
+    <Class rdf:about="&OMKB;神经系统疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#科室 -->
+
+    <Class rdf:about="&OMKB;科室">
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="&OMKB;子科室"/>
+                <someValuesFrom rdf:resource="&OMKB;科室"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="&OMKB;药物"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#精神和行为障碍 -->
+
+    <Class rdf:about="&OMKB;精神和行为障碍">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#耳和乳突疾病 -->
+
+    <Class rdf:about="&OMKB;耳和乳突疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#肿瘤 -->
+
+    <Class rdf:about="&OMKB;肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#胸腺恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;胸腺恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;呼吸和胸内气管的恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#药物 -->
+
+    <Class rdf:about="&OMKB;药物"/>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#血液和造血器官疾病以及某些涉及免疫机能的异常 -->
+
+    <Class rdf:about="&OMKB;血液和造血器官疾病以及某些涉及免疫机能的异常">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#质子泵抑制剂 -->
+
+    <Class rdf:about="&OMKB;质子泵抑制剂">
+        <rdfs:subClassOf rdf:resource="&OMKB;抗分泌剂"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#起源于围生期的某些疾病 -->
+
+    <Class rdf:about="&OMKB;起源于围生期的某些疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#间皮和软组织的恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;间皮和软组织的恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#骨和关节软骨恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;骨和关节软骨恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#骨胳肌肉系统和结缔组织疾病 -->
+
+    <Class rdf:about="&OMKB;骨胳肌肉系统和结缔组织疾病">
+        <rdfs:subClassOf rdf:resource="&OMKB;疾病"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#黑素瘤和其它的皮肤恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;黑素瘤和其它的皮肤恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;恶性肿瘤"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#鼻腔和中耳恶性肿瘤 -->
+
+    <Class rdf:about="&OMKB;鼻腔和中耳恶性肿瘤">
+        <rdfs:subClassOf rdf:resource="&OMKB;呼吸和胸内气管的恶性肿瘤"/>
+    </Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+

@@ -1,0 +1,10 @@
+@prefix ont: <http://www.semanticweb.org/whypro/ontologies/2016/01/OMKB#>.
+@include <RDFS>.
+@include <OWL>.  
+[rule1: (?dis ont:包含症状 ?sym)->(?sym ont:属于疾病 ?dis)] 
+[rule2: (?dis ont:属于科室 ?dep)->(?dep ont:包含疾病 ?dis)] 
+[rule3: (?dis ont:包含症状 ?sym),(?dis ont:属于科室 ?dep)->(?sym ont:参考科室 ?dep)] 
+[rule4: (?exam ont:检查适应症 ?dis)->(?dis ont:进行检查 ?exam)]
+[rule5: (?dis ont:包含症状 ?sym),(?exam ont:检查适应症 ?dis)->(?sym ont:参考检查 ?exam)]
+[rule6: (?surg ont:手术适应症 ?dis)->(?dis ont:进行手术 ?surg)]
+[rule7: (?med ont:药物适应症 ?dis)->(?dis ont:可用药物 ?med)]
